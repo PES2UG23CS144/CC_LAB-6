@@ -1,0 +1,14 @@
+FROM jenkins/jenkins:lts
+
+USER root
+
+RUN apt-get update -o Acquire::Check-Valid-Until=false \
+    -o Acquire::AllowInsecureRepositories=true \
+    -o Acquire::AllowDowngradeToInsecureRepositories=true \
+ && apt-get install -y --allow-unauthenticated \
+    docker.io \
+    make \
+    g++ \
+    curl
+
+USER jenkins
